@@ -9,7 +9,6 @@
     
     <div id="header">
         <h1>DALUUR DASH minute tracker</h1>
-        <p id="version"></p>    
     </div>
 
     <div id="nonheader">
@@ -20,7 +19,7 @@
     
         <!-- TM increase quick options -->
     
-        <h2>Add travel minutes here (e.g. from photos).</h2>
+        <h2>Add travel minutes:</h2>
         <div class="tm-up-container">
             <div class="tm-up-button-cont" id="Vtm-up-cont">
                 <button class="tm-up-button" id="Vtm-up" onclick="addTM(5)">+5</button>
@@ -40,7 +39,7 @@
         <!-- Travel spend menu -->
     
         <div class="tm-down-container">
-            <h2>Spend travel minutes here.</h2>
+            <h2>Spend travel minutes:</h2>
             <label for="travel-min">What is the scheduled travel time in minutes?</label>
             <input type="number" id="travel-min">
             <button id="check-cost" onclick="checkCost()">Check cost</button>
@@ -57,6 +56,7 @@
         </div>
     
         <button onclick="resetLocalStorage()">Reset</button>
+        <p id="version"></p>    
 
     </div>
   

@@ -47,6 +47,11 @@ input {
 
 }
 
+button {
+    background-color: var(--nsblue);
+    color: var(--nsyellow);
+}
+
 button.tm-up-button {
     border: none;
     padding: 15px;
@@ -55,8 +60,6 @@ button.tm-up-button {
     display: inline-block;
     font-size: 20px;
     margin: 5px;
-    background-color: var(--nsblue);
-    color: var(--nsyellow);
     font-weight: bold;
 }
 
