@@ -1,4 +1,4 @@
-const versionNumber = "0.3.1";
+const versionNumber = "0.3.2";
 let currentStatus = {balance: 60, history: []};
 
 // importBackup();
@@ -73,6 +73,7 @@ function checkCost() {
 }
 
 function submitCost() {
+    checkCost();
     currentStatus.balance -= calculateCost();
     updateBalance();
     clearMinInput();
