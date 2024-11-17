@@ -53,13 +53,17 @@ button {
 }
 
 button.tm-up-button {
-    border: none;
-    padding: 15px;
+    padding: 12px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
     margin: 5px;
+    font-weight: bold;
+}
+
+#submit-tm-down {
+    padding: 10px;
     font-weight: bold;
 }
 
