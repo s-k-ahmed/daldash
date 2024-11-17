@@ -1,4 +1,4 @@
-const versionNumber = "0.3";
+const versionNumber = "0.3.1";
 let currentStatus = {balance: 60, history: []};
 
 // importBackup();

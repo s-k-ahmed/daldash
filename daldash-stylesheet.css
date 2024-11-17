@@ -43,8 +43,8 @@ p, span, label, button {
 }
 
 input {
-    padding: 10px;
-
+    font-size: x-large;
+    padding: 5px;
 }
 
 button {
