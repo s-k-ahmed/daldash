@@ -1,0 +1,91 @@
+:root {
+    --nsblue: rgb(5,48,130);
+    --nsyellow: #FFC917;
+    background-color: var(--nsyellow);
+}
+
+p, h1, h2, span, label, button {
+    font-family: Calibri;
+}
+
+p, span, label, button {
+    font-size: large;
+}
+
+#balance-sentence, #cost-sentence {
+    font-size: larger;
+}
+
+#balance, #cost {
+    font-weight: bold;
+    color: var(--nsblue);
+    font-size: x-large;
+}
+
+#header {
+    position:absolute;
+    top:0px;left:0px;
+    width: calc(100% - 40px);
+    height: 100px;
+    background-color: var(--nsblue);
+    color: var(--nsyellow);
+    padding: 20px;
+}
+
+#nonheader {
+    position:absolute;
+    top:140px;left:0px;
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    padding: 10px;
+
+}
+
+button.tm-up-button {
+    border: none;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 5px;
+    background-color: var(--nsblue);
+    color: var(--nsyellow);
+    font-weight: bold;
+}
+
+.tm-up-container, .tm-up-button-cont {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.tm-up-button-cont {
+    flex-direction: column;
+}
+
+p.tm-up-button-info {
+    margin: 0px auto;
+    font-style: italic;
+}
+
+.tm-down-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tm-down-container > * {
+    margin: 5px;
+}
+
+input[type='radio'] {
+    height: 20px;
+    width: 20px;
+}

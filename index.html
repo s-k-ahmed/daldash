@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>daluur dash minute tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="daldash-stylesheet.css">
+</head>
+<body>
+    
+    <div id="header">
+        <h1>DALUUR DASH minute tracker</h1>
+        <p id="version"></p>    
+    </div>
+
+    <div id="nonheader">
+
+        <!-- Current balance -->
+    
+        <p id="balance-sentence">You currently have <span id="balance">?</span> travel minutes.</p>
+    
+        <!-- TM increase quick options -->
+    
+        <h2>Add travel minutes here (e.g. from photos).</h2>
+        <div class="tm-up-container">
+            <div class="tm-up-button-cont" id="Vtm-up-cont">
+                <button class="tm-up-button" id="Vtm-up" onclick="addTM(5)">+5</button>
+            </div>
+            <div class="tm-up-button-cont" id="Xtm-up-cont">
+                <button class="tm-up-button" id="Xtm-up" onclick="addTM(10)">+10</button>
+            </div>
+            <div class="tm-up-button-cont" id="XVtm-up-cont">
+                <button class="tm-up-button" id="XVtm-up" onclick="addTM(15)">+15</button>
+            </div>
+            <div class="tm-up-button-cont" id="XXtm-up-cont">
+                <button class="tm-up-button" id="XXtm-up" onclick="addTM(20)">+20</button>
+                <p class="tm-up-button-info">tag bonus</p>
+            </div>
+        </div>
+    
+        <!-- Travel spend menu -->
+    
+        <div class="tm-down-container">
+            <h2>Spend travel minutes here.</h2>
+            <label for="travel-min">What is the scheduled travel time in minutes?</label>
+            <input type="number" id="travel-min">
+            <button id="check-cost" onclick="checkCost()">Check cost</button>
+            <div id="radio-spr">
+                <input type="radio" name="treinsoort" value="Stoptrein" id="opt-spr" checked>
+                <label for="opt-spr">Stoptrein</label>
+            </div>
+            <div id="radio-ic">
+                <input type="radio" name="treinsoort" value="Intercity" id="opt-ic">
+                <label for="opt-ic">Intercity</label>            
+            </div>
+            <p id="cost-sentence">Your journey costs <span id="cost">?</span> travel minutes.</p>
+            <button id="submit-tm-down" onclick="submitCost()">Submit cost</button>
+        </div>
+    
+        <button onclick="resetLocalStorage()">Reset</button>
+
+    </div>
+  
+    <script type="text/javascript" src="daldash.js"></script>
+
+</body>
+</html>
