@@ -118,16 +118,17 @@ input[type='radio'] {
 
 .history-cell {
     width: calc(100% / 3);
+    padding: 2.5px;
 }
 
 .timestamp-cell {
-    width: 30%;
+    width: calc(35% - 5px);
 }
 
 .tmchange-cell {
-    width: 20%;
+    width: calc(25% - 5px);
 }
 
 .undo-cell {
-    width: 50%;
+    width: calc(40% - 5px);
 }
