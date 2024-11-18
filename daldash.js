@@ -1,4 +1,4 @@
-const versionNumber = "0.3.3";
+const versionNumber = "0.4";
 let currentStatus = {balance: 60, history: []};
 
 // importBackup();
@@ -23,6 +23,7 @@ function getFromStorage() {
 function initialise() {
     setUp();
     updateBalance();
+    updateHistoryTable();
 }
 
 function resetLocalStorage() {
@@ -31,6 +32,7 @@ function resetLocalStorage() {
     saveToStorage();
     localStorage.setItem("notfirsttime-dd", "true");
     updateBalance();
+    clearHistoryTable();
 }
 
 function setUp() {
@@ -42,39 +44,125 @@ function setUp() {
 }
 
 function updateBalance() {
-    let balanceID = document.getElementById('balance');
-    balanceID.innerText = currentStatus.balance;
+    let balanceEl = document.getElementById('balance');
+    balanceEl.innerText = currentStatus.balance;
+}
+
+function updateHistoryTable() {
+    currentStatus.history.filter((v, i) => {
+        currentStatus.history[i].deleted == true ? null : createHistoryRow(i)
+    })
+}
+
+function undoClick(rowIndex) {
+    let undoTextEl = document.getElementById("undo-btn-" + rowIndex);
+    if (undoTextEl.innerText == "Undo?") {
+        undoTextEl.innerText = "Confirm undo";
+    } else {
+        undoTransaction(rowIndex);
+    }
+}
+
+function undoTransaction(rowIndex) {
+    currentStatus.history[rowIndex].deleted = true;
+    currentStatus.balance -= currentStatus.history[rowIndex].tmchange;
+    updateBalance();
+    clearHistoryRow(rowIndex);
     saveToStorage();
+}
+
+function clearHistoryTable() {
+    document.querySelectorAll(".history-row").forEach(x => x.remove());
+}
+
+function clearHistoryRow(rowIndex) {
+    let rowEl = document.getElementById("history-row-" + rowIndex);
+    rowEl.remove();
+}
+
+function createHistoryRow(rowIndex) {
+    let rowDiv = document.createElement('div');
+    rowDiv.classList.add("history-row");
+    rowDiv.id = "history-row-" + rowIndex;
+
+    let timestampDiv = document.createElement('div');
+    timestampDiv.classList.add("history-cell", "timestamp-cell");
+    let tmchangeDiv = document.createElement('div');
+    tmchangeDiv.classList.add("history-cell", "tmchange-cell");
+    let undoDiv = document.createElement('div');
+    undoDiv.classList.add("history-cell", "undo-cell");
+
+    let undoButtonEl = document.createElement("button");
+    undoButtonEl.id = "undo-btn-" + rowIndex;
+    undoButtonEl.innerText = "Undo?";
+    undoButtonEl.onclick = () => {undoClick(rowIndex)};
+
+    let rowObject = currentStatus.history[rowIndex]
+
+    timestampDiv.innerText = rowObject.timestamp;
+    tmchangeDiv.innerText = rowObject.tmchange;
+    undoDiv.append(undoButtonEl);
+
+    let historyHeadRowEl = document.querySelector('.history-headrow');
+    historyHeadRowEl.after(rowDiv);
+    rowDiv.append(timestampDiv, tmchangeDiv, undoDiv);
+}
+
+function addToHistory(tmchangeNum) {
+    let newTransaction = {};
+
+    newTransaction.deleted = false;
+    
+    const d = new Date();
+    let dateStr = d.toLocaleString("nl-NL");
+    newTransaction.timestamp = dateStr;
+
+    tmchangeStr = tmchangeNum > 0 ? "+" + tmchangeNum.toString() : tmchangeNum.toString();
+
+    newTransaction.tmchange = tmchangeStr;
+
+    currentStatus.history.push(newTransaction);
+
+    let transactionIndex = currentStatus.history.length - 1;
+
+    return transactionIndex;
 }
 
 function addTM(numTM) {
     currentStatus.balance += numTM;
+    let indexNum = addToHistory(numTM);
     updateBalance();
+    createHistoryRow(indexNum);
+    saveToStorage();
 }
 
 function calculateCost() {
-    let travelMinID = document.getElementById('travel-min');
-    let inputDuration = travelMinID.value;
-    let isIntercityID = document.getElementById('opt-ic');
-    let isIntercity = isIntercityID.checked;
+    let travelMinEl = document.getElementById('travel-min');
+    let inputDuration = travelMinEl.value;
+    let isIntercityEl = document.getElementById('opt-ic');
+    let isIntercity = isIntercityEl.checked;
     let tmCost = 5 * Math.ceil(inputDuration / 5);
     tmCost = isIntercity ? tmCost * 2 : tmCost;
     return tmCost;
 }
 
 function clearMinInput() {
-    let travelMinID = document.getElementById('travel-min');
-    travelMinID.value = "";
+    let travelMinEl = document.getElementById('travel-min');
+    travelMinEl.value = "";
 }
 
 function checkCost() {
-    let costID = document.getElementById('cost');
-    costID.innerText = calculateCost();
+    let costEl = document.getElementById('cost');
+    costEl.innerText = calculateCost();
 }
 
 function submitCost() {
     checkCost();
-    currentStatus.balance -= calculateCost();
+    let cost = calculateCost();
+    currentStatus.balance -= cost;
+    let indexNum = addToHistory(-cost);
     updateBalance();
+    createHistoryRow(indexNum);
+    saveToStorage();
     clearMinInput();
 }

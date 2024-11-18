@@ -54,9 +54,20 @@
             <p id="cost-sentence">Your journey costs <span id="cost">?</span> travel minutes.</p>
             <button id="submit-tm-down" onclick="submitCost()">Submit cost</button>
         </div>
+
+        <!-- History -->
+
+        <div id="history-cont">
+            <h2>History:</h2>
+            <div class="history-headrow">
+                <div class="history-cell timestamp-cell">Time</div>
+                <div class="history-cell tmchange-cell">Action</div>
+                <div class="history-cell undo-cell"></div>
+            </div>
+        </div>
     
+        <button onclick="resetLocalStorage()">Reset everything</button>
         <p id="version"></p>    
-        <button onclick="resetLocalStorage()">Reset</button>
 
     </div>
   
