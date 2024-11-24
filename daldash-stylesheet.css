@@ -50,6 +50,8 @@ input {
 button {
     background-color: var(--nsblue);
     color: var(--nsyellow);
+    margin: 2.5px;
+    cursor: pointer;
 }
 
 button.tm-up-button {
@@ -103,6 +105,7 @@ input[type='radio'] {
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 600px;
 }
 
 .history-row, .history-headrow {
@@ -131,4 +134,8 @@ input[type='radio'] {
 
 .undo-cell {
     width: calc(40% - 5px);
+}
+
+.undo-cell button {
+    margin: 0px;
 }

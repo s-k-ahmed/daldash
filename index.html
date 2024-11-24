@@ -42,7 +42,6 @@
             <h2>Spend travel minutes:</h2>
             <label for="travel-min">What is the scheduled travel time in minutes?</label>
             <input type="number" id="travel-min">
-            <button id="check-cost" onclick="checkCost()">Check cost</button>
             <div id="radio-spr">
                 <input type="radio" name="treinsoort" value="Stoptrein" id="opt-spr" checked>
                 <label for="opt-spr">Stoptrein</label>
@@ -51,6 +50,7 @@
                 <input type="radio" name="treinsoort" value="Intercity" id="opt-ic">
                 <label for="opt-ic">Intercity</label>            
             </div>
+            <button id="check-cost" onclick="checkCost()">Check cost</button>
             <p id="cost-sentence">Your journey costs <span id="cost">?</span> travel minutes.</p>
             <button id="submit-tm-down" onclick="submitCost()">Submit cost</button>
         </div>
@@ -61,11 +61,12 @@
             <h2>History:</h2>
             <div class="history-headrow">
                 <div class="history-cell timestamp-cell">Time</div>
-                <div class="history-cell tmchange-cell">Action</div>
+                <div class="history-cell tmchange-cell">Change(+/-)</div>
                 <div class="history-cell undo-cell"></div>
             </div>
         </div>
     
+        <button onclick="exportHistory()">Copy history to clipboard</button>
         <button onclick="resetLocalStorage()">Reset everything</button>
         <p id="version"></p>    
 

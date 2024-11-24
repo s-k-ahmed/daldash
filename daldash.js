@@ -1,4 +1,4 @@
-const versionNumber = "0.4.1";
+const versionNumber = "0.4.2";
 let currentStatus = {balance: 60, history: []};
 
 // importBackup();
@@ -165,4 +165,9 @@ function submitCost() {
     createHistoryRow(indexNum);
     saveToStorage();
     clearMinInput();
+}
+
+function exportHistory() {
+    navigator.clipboard.writeText(JSON.stringify(currentStatus.history));
+    alert("History copied to clipboard");
 }
