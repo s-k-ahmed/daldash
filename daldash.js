@@ -1,4 +1,4 @@
-const versionNumber = "0.4.2";
+const versionNumber = "0.4.3";
 let currentStatus = {balance: 60, history: []};
 
 // importBackup();
@@ -26,11 +26,22 @@ function initialise() {
     updateHistoryTable();
 }
 
+function resetClick() {
+    let resetTextEl = document.getElementById("reset");
+    if (resetTextEl.innerText == "Reset everything") {
+        resetTextEl.innerText = "Confirm reset";
+    } else {
+        resetLocalStorage();
+    }
+}
+
 function resetLocalStorage() {
     currentStatus.balance = 60;
     currentStatus.history = [];
     saveToStorage();
     localStorage.setItem("notfirsttime-dd", "true");
+    let resetTextEl = document.getElementById("reset");
+    resetTextEl.innerText = "Reset everything";
     updateBalance();
     clearHistoryTable();
 }
